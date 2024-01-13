@@ -1,9 +1,10 @@
 "use strict";
 
-const secretNum = Math.round(Math.random() * 20);
+let secretNum = Math.round(Math.random() * 20);
 console.log(secretNum);
 // document.querySelector(".number").textContent = secretNum;
 let score = 20;
+let highscore = 0;
 
 document.querySelector(".check").addEventListener("click", () => {
   const guess = Number(document.querySelector(".guess").value);
@@ -12,9 +13,17 @@ document.querySelector(".check").addEventListener("click", () => {
     document.querySelector(".message").textContent = "No Number ⛔️";
   }
   //   when player wins the game
-  else if (guess == secretNum) {
+  else if (guess === secretNum) {
     document.querySelector(".message").textContent = "Congratulations";
-    document.querySelector(".highscore").textContent = score;
+
+    if (score > highscore) {
+      highscore = score;
+      document.querySelector(".highscore").textContent = score;
+    }
+    // else {
+    //   highscore = highscore;
+    //   document.querySelector(".highscore").textContent = highscore;
+    // }
     // change background
     document.querySelector("body").style.backgroundColor = "green";
     document.querySelector(".number").style.backgroundColor = "#333";
@@ -50,5 +59,14 @@ document.querySelector(".check").addEventListener("click", () => {
 
 // reload
 document.querySelector(".again").addEventListener("click", () => {
-  location.reload();
+  // location.reload();
+  score = 20;
+  secretNum = Math.round(Math.random() * 20);
+  document.querySelector("body").style.backgroundColor = "#333";
+  document.querySelector(".number").style.backgroundColor = "#eee";
+  document.querySelector(".number").style.color = "#333";
+  document.querySelector(".number").textContent = "?";
+  document.querySelector(".score").textContent = 0;
+  document.querySelector(".message").textContent = "Start guessing...";
+  document.querySelector(".guess").value = "";
 });
