@@ -1,20 +1,26 @@
 "use strict";
 
 let secretNum = Math.round(Math.random() * 20);
-console.log(secretNum);
+// console.log(secretNum);
 // document.querySelector(".number").textContent = secretNum;
 let score = 20;
 let highscore = 0;
+
+const displayMessage = (message) => {
+  document.querySelector(".message").textContent = message;
+};
 
 document.querySelector(".check").addEventListener("click", () => {
   const guess = Number(document.querySelector(".guess").value);
   //   when there is no input
   if (!guess) {
-    document.querySelector(".message").textContent = "No Number ⛔️";
+    // document.querySelector(".message").textContent = "No Number ⛔️";
+    displayMessage("No Number ⛔️");
   }
   //   when player wins the game
   else if (guess === secretNum) {
-    document.querySelector(".message").textContent = "Congratulations";
+    // document.querySelector(".message").textContent = "Congratulations";
+    displayMessage("Congratulations !!!!");
 
     if (score > highscore) {
       highscore = score;
@@ -35,12 +41,14 @@ document.querySelector(".check").addEventListener("click", () => {
   // when guess is different
   else if (guess !== secretNum) {
     if (score > 1) {
-      document.querySelector(".message").textContent =
-        guess > secretNum ? "Too High" : "Too Low";
+      // document.querySelector(".message").textContent =
+      //   guess > secretNum ? "Too High" : "Too Low";
+      displayMessage(guess > secretNum ? "Too High" : "Too Low");
       score--;
       document.querySelector(".score").textContent = score;
     } else {
-      document.querySelector(".message").textContent = "You Lost the game";
+      // document.querySelector(".message").textContent = "You Lost the game";
+      displayMessage(' "You Lost the game"');
       document.querySelector(".score").textContent = 0;
       document.querySelector("body").style.backgroundColor = "red";
     }
@@ -82,6 +90,7 @@ document.querySelector(".again").addEventListener("click", () => {
   document.querySelector(".number").style.color = "#333";
   document.querySelector(".number").textContent = "?";
   document.querySelector(".score").textContent = 0;
-  document.querySelector(".message").textContent = "Start guessing...";
+  // document.querySelector(".message").textContent = "Start guessing...";
+  displayMessage("Start guessing...");
   document.querySelector(".guess").value = "";
 });
