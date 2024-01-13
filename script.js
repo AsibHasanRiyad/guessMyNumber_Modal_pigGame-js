@@ -31,30 +31,45 @@ document.querySelector(".check").addEventListener("click", () => {
     // show secret
     document.querySelector(".number").textContent = secretNum;
   }
+
+  // when guess is different
+  else if (guess !== secretNum) {
+    if (score > 1) {
+      document.querySelector(".message").textContent =
+        guess > secretNum ? "Too High" : "Too Low";
+      score--;
+      document.querySelector(".score").textContent = score;
+    } else {
+      document.querySelector(".message").textContent = "You Lost the game";
+      document.querySelector(".score").textContent = 0;
+      document.querySelector("body").style.backgroundColor = "red";
+    }
+  }
+
   //   when guess is high
-  else if (guess > secretNum) {
-    if (score > 1) {
-      document.querySelector(".message").textContent = "Too High";
-      score--;
-      document.querySelector(".score").textContent = score;
-    } else {
-      document.querySelector(".message").textContent = "You Lost the game";
-      document.querySelector(".score").textContent = 0;
-      document.querySelector("body").style.backgroundColor = "red";
-    }
-  }
-  //   when guess is low
-  else {
-    if (score > 1) {
-      document.querySelector(".message").textContent = "Too Low";
-      score--;
-      document.querySelector(".score").textContent = score;
-    } else {
-      document.querySelector(".message").textContent = "You Lost the game";
-      document.querySelector(".score").textContent = 0;
-      document.querySelector("body").style.backgroundColor = "red";
-    }
-  }
+  // else if (guess > secretNum) {
+  //   if (score > 1) {
+  //     document.querySelector(".message").textContent = "Too High";
+  //     score--;
+  //     document.querySelector(".score").textContent = score;
+  //   } else {
+  //     document.querySelector(".message").textContent = "You Lost the game";
+  //     document.querySelector(".score").textContent = 0;
+  //     document.querySelector("body").style.backgroundColor = "red";
+  //   }
+  // }
+  // //   when guess is low
+  // else {
+  //   if (score > 1) {
+  //     document.querySelector(".message").textContent = "Too Low";
+  //     score--;
+  //     document.querySelector(".score").textContent = score;
+  //   } else {
+  //     document.querySelector(".message").textContent = "You Lost the game";
+  //     document.querySelector(".score").textContent = 0;
+  //     document.querySelector("body").style.backgroundColor = "red";
+  //   }
+  // }
 });
 
 // reload
