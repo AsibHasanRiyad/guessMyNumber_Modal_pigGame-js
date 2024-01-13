@@ -28,3 +28,11 @@ for (let i = 0; i < showModal.length; i++) {
 // });
 closeModal.addEventListener("click", close);
 overlay.addEventListener("click", close);
+
+// esc key
+document.addEventListener("keydown", (e) => {
+  // console.log(e);
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    close();
+  }
+});
