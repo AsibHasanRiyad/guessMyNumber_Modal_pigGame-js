@@ -16,6 +16,7 @@ score1.textContent = 0;
 dice.classList.add("hidden");
 
 let currentScore = 0;
+let activePlayer = 0;
 
 // roll button function
 rollButton.addEventListener("click", () => {
@@ -25,8 +26,10 @@ rollButton.addEventListener("click", () => {
   dice.src = `dice-${randomNumber}.png`;
   if (randomNumber !== 1) {
     currentScore = currentScore + randomNumber;
-    current0.textContent = currentScore;
+    document.querySelector(`#current--${activePlayer}`).textContent =
+      currentScore;
   } else {
-    currentScore = 0;
+    // switch player
+    activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
   }
 });
